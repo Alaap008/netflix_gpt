@@ -10,7 +10,7 @@ const VideoTitle = ({title, overview}) => {
         <button className="flex items-center bg-white text-black py-2 md:py-3 px-4 md:px-8 text-xl rounded-lg hover:bg-opacity-80">
           <Play size={20} className="mr-1" /> Play
         </button>
-        <button className="hidden md:flex items-center ml-4 bg-gray-500 text-white py-2 md:py-3 px-4 md:px-8 text-xl bg-opacity-50 rounded-lg">
+        <button className="hidden md:flex items-center ml-4 bg-gray-500/50 text-white py-2 md:py-3 px-4 md:px-8 text-xl rounded-lg">
           <Info size={20} className="mr-1" />
           More Info
         </button>
