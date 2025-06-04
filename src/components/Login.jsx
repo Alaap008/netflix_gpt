@@ -5,6 +5,7 @@ import {  createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProf
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { LOGO_URL, USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
     const [ signIn, setSignIn] = useState(true);
@@ -31,15 +32,14 @@ const Login = () => {
             });
 
         }else{
-            console.log("Sign UP")
             createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
             .then((userCredential) => {
                 const user = userCredential.user;
                 updateProfile(user,{
                     displayName: displayName.current.value,
-                    photoURL: 'https://avatars.githubusercontent.com/u/35420740?v=4'
+                    photoURL: USER_AVATAR,
                 }).then(()=>{
-                    navigate("/browse");
+                    navigate("/");
                 })
             })
             .catch((error) => {
@@ -55,7 +55,7 @@ const Login = () => {
     <div>
       <Header></Header>
     <div className="absolute">
-        <img src={'https://assets.nflxext.com/ffe/siteui/vlv3/af2fac72-d956-4952-8686-4d45d359d78c/web/IN-en-20250526-TRIFECTA-perspective_5db3e163-56f7-47c7-9a65-b79b9d76bf24_large.jpg'} className="logo react" alt="React logo" />
+        <img src={LOGO_URL} className="logo react" alt="React logo" />
     </div>
     <form onSubmit={(e)=> e.preventDefault()} className='w-3/12 absolute p-12 bg-black/80 my-36 mx-auto right-0 left-0 text-white rounded-lg '>
     { signIn && <h1> Sign In </h1>}

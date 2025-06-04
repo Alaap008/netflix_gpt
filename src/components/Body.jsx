@@ -12,7 +12,7 @@ const Body = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 const {uid, email, displayName , photoURL } = user;
                 dispatch(addUser({uid, email, displayName , photoURL}));
@@ -22,6 +22,7 @@ const Body = () => {
                 navigate('/');
             }
         });
+        return (()=> unsubscribe());
     }, []);
 
     return (
