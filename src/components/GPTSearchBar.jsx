@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import client from "../utils/openAI"
 import { API_OPTIONS } from '../utils/constants'
 import { addGptMovies } from '../utils/gptSlice'
+import ErrorBoundary from './ErrorBoundary'
 
 const GPTSearchBar = () => {
 const dispatch = useDispatch();
@@ -44,4 +45,10 @@ const gptQuery =
   )
 }
 
-export default GPTSearchBar
+export default function GPTSearchBarWithErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <GPTSearchBar />
+    </ErrorBoundary>
+  );
+}

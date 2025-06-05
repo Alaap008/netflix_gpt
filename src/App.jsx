@@ -8,6 +8,7 @@ import appStore from './utils/appStore'
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom'
 import Login from './components/Login'
 import Browse from './components/Browse'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -21,7 +22,11 @@ function App() {
         },
         {
           path: '/browse',
-          element: <Browse />
+          element: (
+            <ProtectedRoute>
+              <Browse />
+            </ProtectedRoute>
+          )
         }
       ]
     }

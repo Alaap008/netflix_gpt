@@ -2,6 +2,7 @@ import React from 'react'
 import GPTSearchBar from './GPTSearchBar'
 import GPTMovieSuggestions from './GPTMovieSuggestions'
 import { LOGO_URL } from '../utils/constants'
+import withErrorBoundary from './withErrorBoundary'
 
 const GPTSearch = () => {
   return (
@@ -15,4 +16,4 @@ const GPTSearch = () => {
   )
 }
 
-export default GPTSearch
+export default withErrorBoundary(GPTSearch, 'GPTSearch');

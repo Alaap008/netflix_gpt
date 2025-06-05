@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from './Header'
 import { API_OPTIONS } from '../utils/constants'
 import { useNowPlayingMovies } from '../hooks/useNowPlayingMovies'
@@ -9,29 +9,29 @@ import { useUpcomingMovies } from '../hooks/useUpcomingMovies'
 import { useTopRatedMovies } from '../hooks/useTopRatedMovies'
 import GPTSearch from './GPTSearch'
 import { useSelector } from 'react-redux'
+import withErrorBoundary from './withErrorBoundary'
 
 const Browse = () => {
+  const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
 
   useNowPlayingMovies();
   usePopularMovies();
-  useUpcomingMovies();
   useTopRatedMovies();
-  const showGPTSearch = useSelector(store => store.gpt.showGPTSearch);
+  useUpcomingMovies();
+
   return (
     <div>
-        <Header />
-        {
-          showGPTSearch ? (
-            <GPTSearch />
-          ) : (
-            <>
-            <MainContainer />
-            <SecondaryContainer />
-            </>
-          )
-        }
+      <Header />
+      {showGPTSearch ? (
+        <GPTSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
-    )
-}
+  );
+};
 
-export default Browse
+export default withErrorBoundary(Browse, 'Browse');

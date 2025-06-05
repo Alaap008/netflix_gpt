@@ -6,6 +6,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
+import Header from './Header'
+import withErrorBoundary from './withErrorBoundary'
 
 const Body = () => {
     const dispatch = useDispatch();
@@ -27,9 +29,10 @@ const Body = () => {
 
     return (
         <div>
-             <Outlet />
+            <Header />
+            <Outlet />
         </div>
     );
 };
 
-export default Body
+export default withErrorBoundary(Body, 'Body');

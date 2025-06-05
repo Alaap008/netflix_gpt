@@ -6,6 +6,7 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { LOGO_URL, USER_AVATAR } from '../utils/constants';
+import withErrorBoundary from './withErrorBoundary'
 
 const Login = () => {
     const [ signIn, setSignIn] = useState(true);
@@ -73,4 +74,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default withErrorBoundary(Login, 'Login');
